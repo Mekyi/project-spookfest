@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Spookfest"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[physics]
+
+2d/default_gravity=0
 
 [rendering]
 
