@@ -4,6 +4,11 @@ export (int) var speed = 300
 
 var velocity = Vector2()
 
+
+func start(pos):
+    position = pos
+    show()
+
 func get_input():
     velocity = Vector2()
     if Input.is_action_pressed('right'):
@@ -15,12 +20,12 @@ func get_input():
     if Input.is_action_pressed('up'):
         velocity.y -= 1
     velocity = velocity.normalized() * speed
-	
+    
 func _process(delta):
-	if velocity.x != 0:
-	    $AnimatedSprite.flip_v = false
-	    # See the note below about boolean assignment
-	    $AnimatedSprite.flip_h = velocity.x < 0
+    if velocity.x != 0:
+        $AnimatedSprite.flip_v = false
+        # See the note below about boolean assignment
+        $AnimatedSprite.flip_h = velocity.x < 0
 
 func _physics_process(delta):
     get_input()
