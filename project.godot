@@ -19,6 +19,11 @@ config/name="Project Spookfest"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1098
+window/size/height=672
+
 [input]
 
 left={
@@ -52,4 +57,5 @@ down={
 
 [rendering]
 
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

@@ -6,8 +6,9 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	pass # Replace with function body.
+    var projectResolution = Vector2(ProjectSettings.get_setting("display/width"),ProjectSettings.get_setting("display/height"))
+    
+    pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
