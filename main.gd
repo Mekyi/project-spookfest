@@ -10,13 +10,12 @@ var Player = preload("res://Units/Player.tscn")
 var room_size
 var t = 0
 var old_pos
+var current_room
 
 func _ready():
 	randomize()
 	map_maker._ready()
 	room_map = map_maker.room_map
-	for n in range(map_maker.roomWidth):
-		print(room_map[n])
 	make_rooms()
 	var start_room = randi()%($Rooms.get_child_count())+0
 	var pos = $Rooms.get_child(start_room).position
@@ -37,12 +36,18 @@ func make_rooms():
 			if room_map[x][y] == 2:
 				var left = false
 				var up = false
+				var down = false
+				var right = false
 				if y-1 >= 0 and room_map[x][y-1] == 2:
 					left = true
+				if y+1 <= map_maker.roomHeight-1 and room_map[x][y+1] == 2:
+					right = true
 				if x-1 >= 0 and room_map[x-1][y] == 2:
 					up = true
+				if x+1 <= map_maker.roomWidth-1 and room_map[x+1][y] == 2:
+					down = true 
 				var r = Room.instance()
-				r.make_room(Vector2(y*tile_size*room_size[0], x*tile_size*room_size[1]), up, left, room_size[0], room_size[1])
+				r.make_room(Vector2(y*tile_size*room_size[0], x*tile_size*room_size[1]), up, left, down, right, room_size[0], room_size[1])
 				$Rooms.add_child(r)
 				
 func _process(delta):
@@ -62,11 +67,22 @@ func _process(delta):
 		move_camera(new_pos, Vector2(0, 32))
 		
 func move_camera(new_pos, direction):
+		var player_pos
+		var room_pos
 		get_tree().paused = true
 		$Camera2D.set_enable_follow_smoothing(true)
 		$Camera2D.position = new_pos
 		$Startposition.get_child(0).position += direction
+		player_pos = $Startposition.get_child(0).position
+		for room in $Rooms.get_child_count():
+			room_pos = $Rooms.get_child(room).position
+			if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
+				current_room = room
+				break
 		yield(get_tree().create_timer(1.0), "timeout")
+		$Rooms.get_child(current_room).close_doors()
 		get_tree().paused = false
 		old_pos = new_pos
+		yield(get_tree().create_timer(5.0), "timeout")
+		$Rooms.get_child(current_room).close_doors()
 	
