@@ -5,9 +5,11 @@ var map_maker = load ("res://map_maker.gd").new()
 var room_map = []
 var Room = preload("res://room.tscn")
 var tile_size = 16
-var start_pos = Vector2(0,0)
+var start_pos
+var old_pos
 var Player = preload("res://Player.tscn")
 var room_size
+var t = 0
 
 func _ready():
 	randomize()
@@ -23,6 +25,7 @@ func _ready():
 	$Camera2D.start(pos)
 	player1.start(Vector2(start_pos[0]+room_size[0]*tile_size/2, start_pos[1] + room_size[1]*tile_size/2))
 	$Startposition.add_child(player1)
+	old_pos = start_pos
 	
 func make_rooms():
 	var size
@@ -43,15 +46,27 @@ func make_rooms():
 				$Rooms.add_child(r)
 				
 func _process(delta):
-	if $Startposition.get_child(0).position[0] < start_pos[0]:		#going left
-		start_pos = Vector2(start_pos[0]-tile_size*room_size[0], start_pos[1])
-		$Camera2D.move_camera(start_pos)
-	if $Startposition.get_child(0).position[0] > start_pos[0]+tile_size*room_size[0]:		#going right
-		start_pos = Vector2(start_pos[0]+tile_size*room_size[0], start_pos[1])
-		$Camera2D.move_camera(start_pos)
-	if $Startposition.get_child(0).position[1] < start_pos[1]:		#going up
-		start_pos = Vector2(start_pos[0], start_pos[1]-tile_size*room_size[1])
-		$Camera2D.move_camera(start_pos)
-	if $Startposition.get_child(0).position[1] > start_pos[1]+tile_size*room_size[1]:		#going down
-		start_pos = Vector2(start_pos[0], start_pos[1]+tile_size*room_size[1])
-		$Camera2D.move_camera(start_pos)
+	var new_pos
+	var direction
+	if $Startposition.get_child(0).position[0] < old_pos[0]:			# going left
+		new_pos = Vector2(old_pos[0]-tile_size*room_size[0], old_pos[1])
+		move_camera(new_pos, Vector2(-32, 0))
+	if $Startposition.get_child(0).position[0] > old_pos[0]+tile_size*room_size[0]:		#going right
+		new_pos = Vector2(old_pos[0]+tile_size*room_size[0], old_pos[1])
+		move_camera(new_pos, Vector2(32, 0))
+	if $Startposition.get_child(0).position[1] < old_pos[1]:		#going up
+		new_pos = Vector2(old_pos[0], old_pos[1]-tile_size*room_size[1])
+		move_camera(new_pos, Vector2(0, -32))
+	if $Startposition.get_child(0).position[1] > old_pos[1]+tile_size*room_size[1]:		#going down
+		new_pos = Vector2(old_pos[0], old_pos[1]+tile_size*room_size[1])
+		move_camera(new_pos, Vector2(0, 32))
+		
+func move_camera(new_pos, direction):
+		get_tree().paused = true
+		$Camera2D.set_enable_follow_smoothing(true)
+		$Camera2D.position = new_pos
+		$Startposition.get_child(0).position += direction
+		yield(get_tree().create_timer(1.0), "timeout")
+		get_tree().paused = false
+		old_pos = new_pos
+	
