@@ -16,8 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Spookfest"
-run/main_scene="res://Units/Player.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1072
 
 [input]
 
@@ -68,4 +73,5 @@ player2_down={
 
 [rendering]
 
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
