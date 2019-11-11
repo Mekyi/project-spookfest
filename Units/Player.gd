@@ -21,7 +21,10 @@ func get_input():
             velocity.y += 1
         if Input.is_action_pressed('player1_up'):
             velocity.y -= 1
-        velocity = velocity.normalized() * speed
+    elif playerId == 2:
+        velocity = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
+        
+    velocity = velocity.normalized() * speed
     
 func _process(delta):
     if velocity.x != 0:
