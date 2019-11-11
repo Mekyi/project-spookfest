@@ -5,11 +5,11 @@ var map_maker = load ("res://map_maker.gd").new()
 var room_map = []
 var Room = preload("res://room.tscn")
 var tile_size = 16
-var start_pos
-var old_pos
-var Player = preload("res://Player.tscn")
+var start_pos = Vector2(0,0)
+var Player = preload("res://Units/Player.tscn")
 var room_size
 var t = 0
+var old_pos
 
 func _ready():
 	randomize()
@@ -23,7 +23,7 @@ func _ready():
 	start_pos = pos
 	var player1 = Player.instance()
 	$Camera2D.start(pos)
-	player1.start(Vector2(start_pos[0]+room_size[0]*tile_size/2, start_pos[1] + room_size[1]*tile_size/2))
+	player1.start(Vector2(start_pos[0]+room_size[0]*tile_size/2, start_pos[1] + room_size[1]*tile_size/2), 1)
 	$Startposition.add_child(player1)
 	old_pos = start_pos
 	
