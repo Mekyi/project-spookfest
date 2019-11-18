@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
-export var speed = 200
+export (int) var speed = 200
 var playerPosition
+var direction
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+func start(pos):
+    position = pos
+    show()
 
-func _fixed_process(delta):
-    playerPosition = get_node("Player").get_translation()
-    move((playerPosition - get_translation()).normalized() * delta * speed)
+func _process(delta):
+    direction  = (get_node("../Player").position - position).normalized()
+    move_and_slide(direction * speed * 10 * delta)

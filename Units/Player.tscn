@@ -19,7 +19,7 @@ height = 8.60757
 pause_mode = 1
 z_index = 1
 script = ExtResource( 1 )
-speed = 150
+speed = 650
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
