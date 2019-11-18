@@ -14,22 +14,6 @@ var old_pos
 var current_room
 
 func _ready():
-<<<<<<< HEAD
-	randomize()
-	map_maker._ready()
-	room_map = map_maker.room_map
-	make_rooms()
-	var start_room = randi()%($Rooms.get_child_count())+0
-	var pos = $Rooms.get_child(start_room).position
-	current_room = start_room
-	start_pos = pos
-	var player1 = Player.instance()
-	$Camera2D.start(pos)
-	player1.start(Vector2(start_pos[0]+room_size[0]*tile_size/2, start_pos[1] + room_size[1]*tile_size/2), 1)
-	$Startposition.add_child(player1)
-	old_pos = start_pos
-	
-=======
     randomize()
     map_maker._ready()
     room_map = map_maker.room_map
@@ -47,7 +31,6 @@ func _ready():
     $Startposition.add_child(enemy)
     old_pos = start_pos
     
->>>>>>> fc180f7ed0c962914d33161cfaf31b43697d6c31
 func make_rooms():
     var size
     var s = Room.instance()
@@ -89,48 +72,22 @@ func _process(delta):
         move_camera(new_pos, Vector2(0, 32))
         
 func move_camera(new_pos, direction):
-<<<<<<< HEAD
-		var player_pos
-		var room_pos
-		var last_room
-		get_tree().paused = true
-		$Camera2D.set_enable_follow_smoothing(true)
-		$Camera2D.position = new_pos
-		$Startposition.get_child(0).position += direction
-		player_pos = $Startposition.get_child(0).position
-		for room in $Rooms.get_child_count():
-			room_pos = $Rooms.get_child(room).position
-			if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
-				last_room = current_room
-				current_room = room
-				break
-		yield(get_tree().create_timer(1.0), "timeout")
-		$Rooms.get_child(last_room).close_doors()
-		$Rooms.get_child(current_room).close_doors()
-		get_tree().paused = false
-		old_pos = new_pos
-		yield(get_tree().create_timer(5.0), "timeout")
-		$Rooms.get_child(last_room).close_doors()
-		$Rooms.get_child(current_room).close_doors()
-	
-=======
-        var player_pos
-        var room_pos
-        get_tree().paused = true
-        $Camera2D.set_enable_follow_smoothing(true)
-        $Camera2D.position = new_pos
-        $Startposition.get_child(0).position += direction
-        player_pos = $Startposition.get_child(0).position
-        for room in $Rooms.get_child_count():
-            room_pos = $Rooms.get_child(room).position
-            if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
-                current_room = room
-                break
-        yield(get_tree().create_timer(1.0), "timeout")
-        $Rooms.get_child(current_room).close_doors()
-        get_tree().paused = false
-        old_pos = new_pos
-        yield(get_tree().create_timer(5.0), "timeout")
-        $Rooms.get_child(current_room).close_doors()
+    var player_pos
+    var room_pos
+    get_tree().paused = true
+    $Camera2D.set_enable_follow_smoothing(true)
+    $Camera2D.position = new_pos
+    $Startposition.get_child(0).position += direction
+    player_pos = $Startposition.get_child(0).position
+    for room in $Rooms.get_child_count():
+        room_pos = $Rooms.get_child(room).position
+        if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
+            current_room = room
+            break
+    yield(get_tree().create_timer(1.0), "timeout")
+    $Rooms.get_child(current_room).close_doors()
+    get_tree().paused = false
+    old_pos = new_pos
+    yield(get_tree().create_timer(5.0), "timeout")
+    $Rooms.get_child(current_room).close_doors()
     
->>>>>>> fc180f7ed0c962914d33161cfaf31b43697d6c31

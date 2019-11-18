@@ -21,13 +21,8 @@ config/icon="res://icon.png"
 
 [display]
 
-<<<<<<< HEAD
-window/size/width=1629
-window/size/height=753
-=======
 window/size/width=1600
 window/size/height=900
->>>>>>> fc180f7ed0c962914d33161cfaf31b43697d6c31
 
 [importer_defaults]
 
