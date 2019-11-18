@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 export (int) var speed = 300
+var health = 6
 
 var playerId
 var velocity = Vector2()
 
 func start(pos, id):
-	position = pos
+	position = pos 
 	playerId = id
 	show()
 

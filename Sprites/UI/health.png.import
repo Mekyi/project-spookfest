@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/salt.png-2bfc22d2c05286b920a39563b4c655fe.stex"
+path="res://.import/health.png-e2034aa0a2e1b9ef6fe49d1771e4883f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/salt.png"
-dest_files=[ "res://.import/salt.png-2bfc22d2c05286b920a39563b4c655fe.stex" ]
+source_file="res://Sprites/UI/health.png"
+dest_files=[ "res://.import/health.png-e2034aa0a2e1b9ef6fe49d1771e4883f.stex" ]
 
 [params]
 

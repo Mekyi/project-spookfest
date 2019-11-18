@@ -19,6 +19,7 @@ func _ready():
 	make_rooms()
 	var start_room = randi()%($Rooms.get_child_count())+0
 	var pos = $Rooms.get_child(start_room).position
+	current_room = start_room
 	start_pos = pos
 	var player1 = Player.instance()
 	$Camera2D.start(pos)
@@ -69,6 +70,7 @@ func _process(delta):
 func move_camera(new_pos, direction):
 		var player_pos
 		var room_pos
+		var last_room
 		get_tree().paused = true
 		$Camera2D.set_enable_follow_smoothing(true)
 		$Camera2D.position = new_pos
@@ -77,12 +79,15 @@ func move_camera(new_pos, direction):
 		for room in $Rooms.get_child_count():
 			room_pos = $Rooms.get_child(room).position
 			if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
+				last_room = current_room
 				current_room = room
 				break
 		yield(get_tree().create_timer(1.0), "timeout")
+		$Rooms.get_child(last_room).close_doors()
 		$Rooms.get_child(current_room).close_doors()
 		get_tree().paused = false
 		old_pos = new_pos
 		yield(get_tree().create_timer(5.0), "timeout")
+		$Rooms.get_child(last_room).close_doors()
 		$Rooms.get_child(current_room).close_doors()
 	
