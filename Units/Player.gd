@@ -1,9 +1,11 @@
 extends KinematicBody2D
+signal hitByEnemy()
 
 export (int) var speed = 300
 var health = 6
 
 var playerId
+var canTakeDamage = true
 var velocity = Vector2()
 
 func start(pos, id):
@@ -35,3 +37,12 @@ func _process(delta):
 func _physics_process(delta):
     get_input()
     velocity = move_and_slide(velocity * delta)
+
+
+func _on_Player_hitByEnemy():
+    if canTakeDamage:
+        emit_signal("hitByEnemy")
+        canTakeDamage = false
+        
+func get_location():
+    return position
