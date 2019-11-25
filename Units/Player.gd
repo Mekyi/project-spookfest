@@ -1,6 +1,8 @@
 extends KinematicBody2D
+signal hitByEnemy()
 
 export (int) var speed = 300
+var health = 6
 
 var playerId
 var velocity = Vector2()	
@@ -66,5 +68,19 @@ func _process(delta):
 		$AnimatedSprite.flip_h = velocity.x < 0
 
 func _physics_process(delta):
+<<<<<<< HEAD
 	get_input()
 	velocity = move_and_slide(velocity * delta)
+=======
+    get_input()
+    velocity = move_and_slide(velocity * delta)
+
+
+func _on_Player_hitByEnemy():
+    if canTakeDamage:
+        emit_signal("hitByEnemy")
+        canTakeDamage = false
+        
+func get_location():
+    return position
+>>>>>>> 90694f88b1b8fc619ee2ca8d670398bb567858d3
