@@ -7,9 +7,9 @@ var playerId
 var velocity = Vector2()
 
 func start(pos, id):
-	position = pos 
-	playerId = id
-	show()
+    position = pos 
+    playerId = id
+    show()
 
 func get_input():
     velocity = Vector2()

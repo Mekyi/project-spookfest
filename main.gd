@@ -8,6 +8,7 @@ var tile_size = 16
 var start_pos = Vector2(0,0)
 var Player = preload("res://Units/Player.tscn")
 var Enemy = preload("res://Units/SaltEnemy.tscn")
+
 var room_size
 var t = 0
 var old_pos
