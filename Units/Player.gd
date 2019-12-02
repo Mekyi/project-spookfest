@@ -18,6 +18,8 @@ func start(pos, id):
     PlayerVariables.CurrentAttack = "basic_attack"
     var a = attack.instance()
     $AnimatedSprite.add_child(a)
+    $AnimationPlayer.play("Move")
+    
     show()
 
 func timer(delta):
@@ -54,6 +56,20 @@ func get_input():
             else:
                 PlayerVariables.CurrentAttack = "basic_attack"
             print("SWITCH!")
+            $Sprite_Idle.frame = 12
+        if velocity == Vector2(1,-1): #Up Right
+            $AnimationPlayer.stop();
+            $Sprite_Idle.frame = 11
+        if velocity == Vector2(-1,-1): #Up Left
+            $AnimationPlayer.stop();
+            $Sprite_Idle.frame = 13
+        if velocity == Vector2(1,1): #Down Right
+            $AnimationPlayer.stop();
+            $Sprite_Idle.frame = 9
+        if velocity == Vector2(-1,1): #Down Left
+            $AnimationPlayer.stop();
+            $Sprite_Idle.frame = 15
+            
     elif playerId == 2:
         velocity = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
         
