@@ -17,6 +17,7 @@ height = 12.5087
 
 [node name="Salt Enemy" type="KinematicBody2D"]
 z_index = 1
+collision_layer = 2
 script = ExtResource( 1 )
 speed = 450
 

@@ -9,7 +9,6 @@ var Room = preload("res://room.tscn")
 var tile_size = 16
 var start_pos = Vector2(0,0)
 var Player = preload("res://Units/Player.tscn")
-var Enemy = preload("res://Units/SaltEnemy.tscn")
 
 var room_size
 var t = 0
@@ -85,7 +84,7 @@ func move_camera(new_pos, direction):
             current_room = room
             break
     yield(get_tree().create_timer(1.0), "timeout")
-    spawn_enemies($Rooms.get_child(current_room))
+    #spawn_enemies($Rooms.get_child(current_room))
     $Rooms.get_child(current_room).close_doors()
     get_tree().paused = false
     old_pos = new_pos

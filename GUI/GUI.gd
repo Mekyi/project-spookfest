@@ -13,19 +13,8 @@ func _ready():
         new_heart.position = Vector2(heart_posx, 0)
         $MarginContainer/HBoxContainer/Heartcontainer.add_child(new_heart)
         heart_posx += 40
-    yield(get_tree().create_timer(5.0), "timeout")
-    PlayerVariables.PlayerHealth -= 1
-    hitTaken()
-    yield(get_tree().create_timer(5.0), "timeout")
-    PlayerVariables.PlayerHealth -= 1
-    hitTaken()
-    yield(get_tree().create_timer(5.0), "timeout")
-    PlayerVariables.PlayerHealth -= 1
-    hitTaken()
-    yield(get_tree().create_timer(5.0), "timeout")
-    PlayerVariables.PlayerHealth -= 1
-    hitTaken()
+
 
 func hitTaken():
-	var child = int(round(PlayerVariables.PlayerHealth/2))
-	$MarginContainer/HBoxContainer/Heartcontainer.get_child(child).playAnimation()
+    var child = int(round(PlayerVariables.PlayerHealth/2))
+    $MarginContainer/HBoxContainer/Heartcontainer.get_child(child).playAnimation()

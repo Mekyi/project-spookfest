@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Units/Attack/Attacks/baseAttack.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Attacks/basic_swipe.png" type="Texture" id=2]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 5, 19.5, -2, 19.5, -9.7, 10, -9.7, -10, -2, -19.5, 5, -19.5 )
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 4
+script = ExtResource( 1 )
+speed = 200
+cooldown = 0.3
+travelTime = 0.3
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite"]
+rotation = 1.5708
+scale = Vector2( 0.62, 0.82 )
+shape = SubResource( 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/testtiles.png-a24e7dc79ec9f6122b1891abe6169775.stex"
+path="res://.import/basic_swipe.png-77333a470c83a2000ad868cbcfc27e1c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testtiles.png"
-dest_files=[ "res://.import/testtiles.png-a24e7dc79ec9f6122b1891abe6169775.stex" ]
+source_file="res://Sprites/Attacks/basic_swipe.png"
+dest_files=[ "res://.import/basic_swipe.png-77333a470c83a2000ad868cbcfc27e1c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
