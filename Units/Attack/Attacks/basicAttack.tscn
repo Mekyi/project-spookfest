@@ -8,6 +8,7 @@ points = PoolVector2Array( 5, 19.5, -2, 19.5, -9.7, 10, -9.7, -10, -2, -19.5, 5,
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 4
+collision_mask = 8
 script = ExtResource( 1 )
 speed = 200
 cooldown = 0.3
