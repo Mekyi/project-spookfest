@@ -79,10 +79,10 @@ func move_camera(new_pos, direction):
     $Startposition.get_child(0).position += direction
     player_pos = $Startposition.get_child(0).position
     for room in $Rooms.get_child_count():
-        room_pos = $Rooms.get_child(room).position
-        if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
-            current_room = room
-            break
+            room_pos = $Rooms.get_child(room).position
+            if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
+                    current_room = room
+                    break
     yield(get_tree().create_timer(1.0), "timeout")
     #spawn_enemies($Rooms.get_child(current_room))
     $Rooms.get_child(current_room).close_doors()

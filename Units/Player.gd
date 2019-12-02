@@ -5,12 +5,14 @@ var attack = preload("res://Units/Attack/Attack.tscn")
 export (int) var speed = 300
 var health = 6
 
-var playerId
 var canTakeDamage = true
-var velocity = Vector2()
+var playerId
+var velocity = Vector2()	
+const TIME_PERIOD = 5
+var time = 0
 
 func start(pos, id):
-    position = pos 
+    position = pos
     playerId = id
     #Add attack functionality:
     PlayerVariables.CurrentAttack = "basic_attack"
@@ -18,16 +20,31 @@ func start(pos, id):
     $AnimatedSprite.add_child(a)
     show()
 
+func timer(delta):
+    time += delta
+    if (velocity != Vector2(0,0)):
+        time = 0
+    if time > TIME_PERIOD:
+        $AnimationPlayer.play("Idle")
+        time = 0
+
 func get_input():
     velocity = Vector2()
     if playerId == 1:
         if Input.is_action_pressed('player1_right'):
+            $AnimationPlayer.stop();
             velocity.x += 1
+            $Sprite_Idle.frame = 10
         if Input.is_action_pressed('player1_left'):
+            $AnimationPlayer.stop();
             velocity.x -= 1
+            $Sprite_Idle.frame = 14
         if Input.is_action_pressed('player1_down'):
+            $AnimationPlayer.stop();
             velocity.y += 1
+            $Sprite_Idle.frame = 8
         if Input.is_action_pressed('player1_up'):
+            $AnimationPlayer.stop();
             velocity.y -= 1
         if Input.is_action_just_pressed('player1_shoot'):
             $AnimatedSprite.get_child(0).attack(get_location(), get_global_mouse_position())
@@ -43,6 +60,7 @@ func get_input():
     velocity = velocity.normalized() * speed * 10
     
 func _process(delta):
+    timer(delta)
     if velocity.x != 0:
         $AnimatedSprite.flip_v = false
         $AnimatedSprite.flip_h = velocity.x < 0
