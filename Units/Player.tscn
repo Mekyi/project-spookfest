@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Units/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Godot_Hahmo.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Godot_Hahmo_Idle.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/Shot.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Wave.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.6655
@@ -83,4 +85,10 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.0659695, -0.131943 )
 shape = SubResource( 1 )
+
+[node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="WaveSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 [connection signal="hitByEnemy" from="." to="." method="_on_Player_hitByEnemy"]
