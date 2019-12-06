@@ -19,3 +19,4 @@ margin_bottom = 748.0
 margin_right = 200.0
 margin_bottom = 748.0
 rect_min_size = Vector2( 200, 0 )
+[connection signal="hitTaken" from="." to="." method="hitTaken"]
