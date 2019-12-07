@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://Units/SaltEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Pause.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://GUI/GameOver.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
 
 [node name="main" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,6 +17,9 @@ Enemy = ExtResource( 2 )
 pause_mode = 2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="Rooms" type="Node" parent="."]
 
@@ -25,4 +29,4 @@ pause_mode = 2
 pause_mode = 2
 anchor_mode = 0
 current = true
-script = ExtResource( 5 )
+script = ExtResource( 6 )

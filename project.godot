@@ -27,6 +27,7 @@ PlayerVariables="*res://Units/PlayerVariables.gd"
 
 window/size/width=1600
 window/size/height=900
+window/size/resizable=false
 mouse_cursor/custom_image="res://Sprites/UI/cursorv3.png"
 mouse_cursor/custom_image_hotspot=Vector2( 25, 25 )
 

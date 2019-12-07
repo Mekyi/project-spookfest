@@ -1,5 +1,6 @@
 extends KinematicBody2D
 signal hitByEnemy()
+signal Game_over
 var attack = preload("res://Units/Attack/Attack.tscn")
 export (int) var speed = 300
 export (int) var knockbackForce = 45
@@ -136,6 +137,8 @@ func _on_Player_hitByEnemy():
     emit_signal("hitTaken")
     canTakeDamage = false
     canMove = false
+    if PlayerVariables.PlayerHealth == 0:
+        emit_signal("Game_over")
         
 func get_location():
     return position

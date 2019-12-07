@@ -35,7 +35,7 @@ func _ready():
     player1.start(startRoomCenter, 1)
     $Startposition.add_child(player1)
     old_pos = start_pos
-    print(room_list)
+    player1.connect("Game_over", get_node("CanvasLayer/GameOver"), "game_over")
     
 func make_rooms():
     var size
@@ -82,6 +82,7 @@ func _process(delta):
             enemies_in_room = false
             room_list[current_room] = 1
             $Rooms.get_child(current_room).open_doors()
+    
         
 func move_camera(new_pos, direction):
     
