@@ -38,29 +38,29 @@ func _ready():
     player1.connect("Game_over", get_node("CanvasLayer/GameOver"), "game_over")
     
 func make_rooms():
-    var size
-    var s = Room.instance()
-    room_size = s.get_size()					# checks room size to use
-    
-    for x in range(map_maker.roomWidth):
-        for y in range(map_maker.roomHeight):
-            if room_map[x][y] == 2:
-                var left = false
-                var up = false
-                var down = false
-                var right = false
-                if y-1 >= 0 and room_map[x][y-1] == 2:
-                    left = true
-                if y+1 <= map_maker.roomHeight-1 and room_map[x][y+1] == 2:
-                    right = true
-                if x-1 >= 0 and room_map[x-1][y] == 2:
-                    up = true
-                if x+1 <= map_maker.roomWidth-1 and room_map[x+1][y] == 2:
-                    down = true 
-                var r = Room.instance()
-                r.make_room(Vector2(y*tile_size*room_size[0], x*tile_size*room_size[1]), up, left, down, right, room_size[0], room_size[1])
-                $Rooms.add_child(r)
-                
+	var size
+	var s = Room.instance()
+	room_size = s.get_size()					# checks room size to use
+	
+	for x in range(map_maker.roomWidth):
+		for y in range(map_maker.roomHeight):
+			if room_map[x][y] == 2:
+				var left = false
+				var up = false
+				var down = false
+				var right = false
+				if y-1 >= 0 and room_map[x][y-1] == 2:
+					left = true
+				if y+1 <= map_maker.roomHeight-1 and room_map[x][y+1] == 2:
+					right = true
+				if x-1 >= 0 and room_map[x-1][y] == 2:
+					up = true
+				if x+1 <= map_maker.roomWidth-1 and room_map[x+1][y] == 2:
+					down = true 
+				var r = Room.instance()
+				r.make_room(Vector2(y*tile_size*room_size[0], x*tile_size*room_size[1]), up, left, down, right, room_size[0], room_size[1])
+				$Rooms.add_child(r)
+				
 func _process(delta):
     var new_pos
     var direction
@@ -85,33 +85,33 @@ func _process(delta):
     
         
 func move_camera(new_pos, direction):
-    
-    var player_pos
-    var room_pos
-    get_tree().paused = true
-    $Camera2D.set_enable_follow_smoothing(true)
-    $Camera2D.position = new_pos
-    $Startposition.get_child(0).position += direction
-    player_pos = $Startposition.get_child(0).position
-    for room in $Rooms.get_child_count():
-            room_pos = $Rooms.get_child(room).position
-            if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
-                    current_room = room
-                    break
-    yield(get_tree().create_timer(1.0), "timeout")
-    if room_list[current_room] == 0:
-        spawn_enemies($Rooms.get_child(current_room))
-        $Rooms.get_child(current_room).close_doors()
-    get_tree().paused = false
-    old_pos = new_pos
-    #doors_closed = true;
-    
+	
+	var player_pos
+	var room_pos
+	get_tree().paused = true
+	$Camera2D.set_enable_follow_smoothing(true)
+	$Camera2D.position = new_pos
+	$Startposition.get_child(0).position += direction
+	player_pos = $Startposition.get_child(0).position
+	for room in $Rooms.get_child_count():
+			room_pos = $Rooms.get_child(room).position
+			if room_pos[0] < player_pos[0] and player_pos[0] < room_pos[0]+(room_size[0]*tile_size) and room_pos[1] < player_pos[1] and player_pos[1] < room_pos[1]+(room_size[1]*tile_size):
+					current_room = room
+					break
+	yield(get_tree().create_timer(1.0), "timeout")
+	if room_list[current_room] == 0:
+		spawn_enemies($Rooms.get_child(current_room))
+		$Rooms.get_child(current_room).close_doors()
+	get_tree().paused = false
+	old_pos = new_pos
+	doors_closed = true;
+	
 func spawn_enemies(room):
-    var spawnLocations = $Rooms.get_child(current_room).get_enemy_spawns()
-    for spawn in spawnLocations:
-        var enemy = Enemy.instance()
-        enemy.start(spawn)
-        enemy.position = spawn
-        room.get_node("Enemies").add_child(enemy)
-    enemies_in_room = true
-    
+	var spawnLocations = $Rooms.get_child(current_room).get_enemy_spawns()
+	for spawn in spawnLocations:
+		var enemy = Enemy.instance()
+		enemy.start(spawn)
+		enemy.position = spawn
+		room.get_node("Enemies").add_child(enemy)
+	enemies_in_room = true
+	
