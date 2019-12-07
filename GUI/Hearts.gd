@@ -6,10 +6,10 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationPlayer.play("FullHeart")
+    $AnimationPlayer.play("FullHeart")
 
 func playAnimation():
-	if PlayerVariables.PlayerHealth % 2 != 0:
-		$AnimationPlayer.play("HalfHeart")
-	else:
-		$AnimationPlayer.play("NoHeart")
+    if PlayerVariables.PlayerHealth % 2 != 0:
+        $AnimationPlayer.play("HalfHeart")
+    else:
+        $AnimationPlayer.play("NoHeart")

@@ -33,3 +33,5 @@ position = Vector2( 477.138, 318.272 )
 
 [node name="Position2D4" type="Position2D" parent="SpawnPoints"]
 position = Vector2( 46.471, 313.409 )
+
+[node name="Enemies" type="Node2D" parent="."]
