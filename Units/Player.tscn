@@ -96,5 +96,6 @@ stream = ExtResource( 4 )
 stream = ExtResource( 5 )
 
 [node name="DamageSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 stream = ExtResource( 6 )
 [connection signal="hitByEnemy" from="." to="." method="_on_Player_hitByEnemy"]

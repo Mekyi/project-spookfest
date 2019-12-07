@@ -6,6 +6,7 @@ export (NodePath) var exit_path
 onready var button_continue = get_node(continue_path)
 onready var button_restart = get_node(restart_path)
 onready var button_exit = get_node(exit_path)
+var game_over = false
 
 func _ready():
     button_continue.connect("button_down", self, "set_pause")
@@ -13,7 +14,7 @@ func _ready():
     button_exit.connect("button_down", self, "exit_game")
     
 func _input(event):
-    if event.is_action_pressed("pause"):
+    if event.is_action_pressed("pause") && !game_over:
         set_pause()
         
 func set_pause():
@@ -28,3 +29,6 @@ func restart_game():
     PlayerVariables.PlayerHealth = 6
     get_tree().reload_current_scene()
     set_pause()
+    
+func game_over():
+    game_over = true

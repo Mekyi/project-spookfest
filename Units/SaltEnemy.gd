@@ -14,16 +14,16 @@ func start(pos):
     show()
 
 func _process(delta):
-	direction  = (get_node("../../../../Startposition/Player").get_global_position() - get_global_position()).normalized()
-	if Input.is_action_pressed("ui_accept"):
-		print(get_node("../Player").position)
-		print(position)
-		print(direction)
-		
-		
-	move_and_slide(direction * speed * 10 * delta)
-		
-		
+    direction  = (get_node("../../../../Startposition/Player").get_global_position() - get_global_position()).normalized()
+    if Input.is_action_pressed("ui_accept"):
+        print(get_node("../Player").position)
+        print(position)
+        print(direction)
+        
+        
+    move_and_slide(direction * speed * 10 * delta)
+        
+        
 func take_hit(dmg):
     health -= dmg
     if health <= 0:

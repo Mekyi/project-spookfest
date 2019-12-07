@@ -23,6 +23,7 @@ func restart_game():
     set_pause()
     
 func game_over():
+    print("at game over")
     var new_pause_state = not get_tree().paused
     get_tree().paused = not get_tree().paused
     visible = new_pause_state
